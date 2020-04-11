@@ -1,0 +1,13 @@
+# python
+*.pyc
+__pycache__/*
+*.so
+
+# rust
+target
+
+# editor stuff
+.*.swp
+.*.swo
+.idea/
+.vscode/
