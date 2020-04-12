@@ -30,3 +30,5 @@ Output is as follows:
 | X    | right color in the right position |
 | O    | right color in the wrong position |
 | -    | wrong color                       |
+
+Note that the order of the output is randomized, otherwise it'd be too easy!
