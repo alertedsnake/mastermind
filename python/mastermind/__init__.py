@@ -191,12 +191,12 @@ class Mastermind:
                 return
 
             guess = input(f'{attempt}: Enter {self.args.length} colors: ')
+            guess = guess.lower()
             msg = self.validate_input(guess)
             if msg:
                 print(msg)
                 continue
 
-            guess = guess.lower()
             result = self.check_input(code, guess)
             log.debug(f'check result: {result}')
             random.shuffle(result)
