@@ -1,0 +1,16 @@
+[package]
+name = "mastermind"
+version = "0.1.0"
+edition = "2018"
+authors = ["Michael Stella <michael@jwplayer.com>"]
+description = "A game"
+
+[[bin]]
+name = "mastermind"
+path = "src/main.rs"
+
+[dependencies]
+ansi_term = "0.12.1"
+rand = "*"
+random_choice = "*"
+promptly = "0.3.0"
