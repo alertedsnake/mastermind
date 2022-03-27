@@ -1,8 +1,3 @@
-extern crate ansi_term;
-extern crate promptly;
-extern crate rand;
-extern crate random_choice;
-
 use ansi_term::Colour;
 use ansi_term::Style;
 use ansi_term::{ANSIString, ANSIStrings};
@@ -10,6 +5,7 @@ use promptly::prompt;
 use random_choice::random_choice;
 use std::collections::HashMap;
 use std::process;
+use structopt::StructOpt;
 
 // available colors
 const RED: char = 'r';
@@ -235,9 +231,24 @@ fn rungame() {
     println!("You lose, the code was {}", colorize(codestr));
 }
 
+#[derive(StructOpt)]
+#[structopt(name = "mastermind")]
+struct Opt {
+    #[structopt(long, default_value = "6")]
+    colors: u32,
+
+    #[structopt(long, default_value = "2")]
+    duplicates: u32,
+
+    #[structopt(long, default_value = "10")]
+    attempts: u32,
+}
+
 fn main() {
+    let args = Opt::from_args();
+
     let mut colorvec: Vec<char> = Vec::new();
-    colorvec.extend(&COLORS[0..NUM_COLORS]);
+    colorvec.extend(&COLORS[0..(args.colors as usize)]);
     let colorstr: String = colorvec.into_iter().collect();
 
     println!(
@@ -250,9 +261,9 @@ Try to break it in {} guesses or less.
 
 Available colors are: {}
 ",
-        NUM_CHOICES,
-        ATTEMPTS,
-        ALLOWED_DUPES,
+        args.colors,
+        args.attempts,
+        args.duplicates,
         colorize(colorstr)
     );
 
