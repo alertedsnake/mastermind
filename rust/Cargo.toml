@@ -1,7 +1,7 @@
 [package]
 name = "mastermind"
-version = "0.2.0"
-edition = "2018"
+version = "0.2.1"
+edition = "2021"
 authors = ["Michael Stella <michael@jwplayer.com>"]
 description = "A game"
 
@@ -10,8 +10,8 @@ name = "mastermind"
 path = "src/main.rs"
 
 [dependencies]
-ansi_term = "0.12"
-rand = "*"
-random_choice = "*"
-promptly = "0.3"
-structopt = "0.3"
+ansi_term       = "0.12"
+rand            = "*"
+random_choice   = "*"
+promptly        = "0.3"
+clap            = { version = "4.5.4", features = ["derive"] }

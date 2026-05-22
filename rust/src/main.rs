@@ -5,7 +5,7 @@ use promptly::prompt;
 use random_choice::random_choice;
 use std::collections::HashMap;
 use std::process;
-use structopt::StructOpt;
+use clap::Parser;
 
 // available colors
 const RED: char = 'r';
@@ -231,21 +231,21 @@ fn rungame() {
     println!("You lose, the code was {}", colorize(codestr));
 }
 
-#[derive(StructOpt)]
-#[structopt(name = "mastermind")]
+#[derive(Parser, Debug)]
+#[command(version, about, name = "mastermind")]
 struct Opt {
-    #[structopt(long, default_value = "6")]
+    #[arg(long, default_value = "6")]
     colors: u32,
 
-    #[structopt(long, default_value = "2")]
+    #[arg(long, default_value = "2")]
     duplicates: u32,
 
-    #[structopt(long, default_value = "10")]
+    #[arg(long, default_value = "10")]
     attempts: u32,
 }
 
 fn main() {
-    let args = Opt::from_args();
+    let args = Opt::parse();
 
     let mut colorvec: Vec<char> = Vec::new();
     colorvec.extend(&COLORS[0..(args.colors as usize)]);
